@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:replace="~{template/admin/index :: renderBody('Edit Profile', ~{this::.content-wrapper})}">
+
+<head>
+	<title>Edit Profile</title>
+</head>
+
+<body>
+	<div class="content-wrapper" style="min-height: 2035px;">
+		<div class="alert alert-success alert-dismissible" th:if="${next != null}">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h5><i class="icon fas fa-check"></i> Notification</h5>
+			<p th:text="${next}"></p>
+		</div>
+		<div class="alert alert-dismissible bg-maroon color-palette" th:if="${error != null}">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="color: white">×</button>
+			<h5><i class="icon fas fa-ban"></i> Alert!</h5>
+			<p th:text="${error}"></p>
+		</div>
+
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Change Profile</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+
+			<div class="card card-solid">
+				<div class="card-body">
+					<form method="POST" th:action="@{/account/profile}">
+						<div class="row">
+							<div class="col-12 col-sm-6"
+								style="display: flex; flex-direction: column; justify-content: center;">
+								<h3 class="my-3" th:text="${'Profile of ' + account.fullname}"></h3>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Username</label>
+									<input type="text" class="form-control" id="exampleInputEmail1"
+										placeholder="Enter username" th:field="${account.username}" disabled>
+									<input type="hidden" th:field="${account.username}" />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Fullname</label>
+									<input type="text" class="form-control" id="exampleInputEmail1"
+										placeholder="Full Name" th:field="${account.fullname}">
+								</div>
+								<div class="mt-4">
+									<input type="hidden" th:field="${account.id}" />
+									<input type="hidden" th:field="${account.password}" />
+									<button type="submit" class="btn btn-block btn-light btn-lg"
+										th:text="${'Save'}"></button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+
+		</section>
+		<!-- /.content -->
+	</div>
+</body>
+
+</html>
