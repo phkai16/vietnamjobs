@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div class="content-wrapper" style="min-height: 1657px;">
+<div class="content-wrapper">
     <!-- Breadcrumb -->
     <section class="content-header">
         <div class="container-fluid">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{/admin}">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Tài khoản</li>
                     </ol>
                 </div>
@@ -38,7 +38,6 @@
     </div>
 
     <!-- Main content -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -49,7 +48,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered table-striped" id="table">
+                            <table class="table table-bordered table-striped" id="example1">
                                 <thead>
                                 <tr>
                                     <th>Rendering engine</th>
@@ -492,24 +491,25 @@
 
 </div>
 
-<!-- Page specific script -->
-<script>
-    $(function () {
-        $("#table").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-        $('#table').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
+
 </body>
+<!-- Page specific script -->
+<!--<script>-->
+<!--    $(function () {-->
+<!--        $("#example1").DataTable({-->
+<!--            "responsive": true, "lengthChange": false, "autoWidth": false,-->
+<!--            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]-->
+<!--        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');-->
+<!--        $('#example2').DataTable({-->
+<!--            "paging": true,-->
+<!--            "lengthChange": false,-->
+<!--            "searching": false,-->
+<!--            "ordering": true,-->
+<!--            "info": true,-->
+<!--            "autoWidth": false,-->
+<!--            "responsive": true,-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </html>

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/account")
-public class AccountController {
+public class AdminAccountController {
 
     //ROUTES
-    @GetMapping(value = {"index", "", "/"})
+    @GetMapping(value = {"/index", "", "/"})
     private String index(ModelMap model) {
         return "admin/account/index";
     }

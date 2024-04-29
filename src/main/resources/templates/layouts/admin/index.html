@@ -15,21 +15,25 @@
     <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" th:href="@{/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-    <!-- Theme style -->
-    <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
     <!-- DataTables -->
     <link rel="stylesheet" th:href="@{/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
     <link rel="stylesheet" th:href="@{/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
     <link rel="stylesheet" th:href="@{/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+    <!-- Mine -->
+    <script th:src="@{/assets/js/jquery.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- PRELOADER -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img alt="VietnamJobs Logo" class="animation__wobble" height="60" th:src="@{/images/logo_typo.png}">
-    </div>
+    <!--    <div class="preloader flex-column justify-content-center align-items-center">-->
+    <!--        <img alt="VietnamJobs Logo" class="animation__wobble" height="60" th:src="@{/assets/images/logo_typo.png}">-->
+    <!--    </div>-->
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light"
          style="position: fixed; top:0; left: 0;right: 0;">
@@ -39,10 +43,10 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a class="nav-link" href="../../index3.html">Home</a>
+                <a class="nav-link" th:href="@{/admin}">Trang chủ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" th:href="@{/admin}">Profile</a>
             </li>
         </ul>
 
@@ -178,16 +182,16 @@
         <!-- Brand Logo -->
         <a class="brand-link" th:href="@{/admin}">
             <img alt="AdminLTE Logo" class="brand-image"
-                 th:src="@{/images/logo.png}">
+                 th:src="@{/assets/images/logo.png}">
             <span class="brand-text font-weight-bold">VietnamJobs</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img alt="User Image" class="img-circle elevation-2" src="../../dist/img/user2-160x160.jpg">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+                <div class="image" style="font-size: 24px; color: #c2c7d0">
+                    <i class="fas fa-user-circle"></i>
                 </div>
                 <div class="info">
                     <a class="d-block" href="#">Alexander Pierce</a>
@@ -211,7 +215,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" th:href="@{/admin}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Trang chủ
@@ -237,13 +241,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a class="nav-link" href="../../index.html">
+                                <a class="nav-link" th:href="@{/admin/local}">
                                     <i class="fas fa-th-list nav-icon"></i>
                                     <p>Danh sách</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../index2.html">
+                                <a class="nav-link" th:href="@{/admin/local/add}">
                                     <i class="fas fa-plus nav-icon"></i>
                                     <p>Tạo mới</p>
                                 </a>
@@ -420,17 +424,17 @@
         </div>
         <!-- /.sidebar -->
         <div class="sidebar-custom">
-            <a class="btn btn-link" href="#"><i class="fas fa-sign-out-alt"></i>
-                <span class="hide-on-collapse">Profile</span>
+            <a class="btn btn-link" href="#" style="font-size: 22px; color: #c2c7d0">
+                <i class="fas fa-sign-out-alt"></i>
             </a>
-            <a class="btn btn-secondary hide-on-collapse pos-right" href="#">Logout</a>
+            <a class="btn btn-secondary hide-on-collapse pos-right" href="#">Đăng xuất</a>
         </div>
         <!-- /.sidebar-custom -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <!-- DYNAMIC PAGE CONTENT -->
-    <div style="padding-top: 57px; min-height: calc(100vh - 57px);">
+    <div style="padding-top: 57px; min-height: 100vh;">
         <th:block th:replace="${renderContent}"></th:block>
     </div>
     <!-- /.content-wrapper -->
@@ -469,6 +473,23 @@
 <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
 <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
 <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
 <!-- AdminLTE App -->
 <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
 <!-- AdminLTE for demo purposes -->

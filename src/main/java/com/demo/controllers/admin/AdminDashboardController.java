@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminDashboardController {
 
     //ROUTES
-    @GetMapping(value = {"index", "", "/", "/dashboard"})
+    @GetMapping(value = {"/index", "", "/"})
     private String index(ModelMap model) {
-        return "admin/index";
+        return "admin/dashboard/index";
     }
 
 }
